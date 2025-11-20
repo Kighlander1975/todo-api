@@ -1,0 +1,85 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "ToDo API",
+        "description": "Dokumentation der ToDo-API",
+        "version": "1.0.0"
+    },
+    "paths": {
+        "/api/todos": {
+            "get": {
+                "tags": [
+                    "ToDos"
+                ],
+                "summary": "Gibt eine Liste aller ToDos zurück",
+                "description": "Liefert alle ToDos des aktuell eingeloggten Users als JSON-Antwort",
+                "operationId": "521da6d629de5b14a88d7b8c218cb6a1",
+                "responses": {
+                    "200": {
+                        "description": "Liste der ToDos",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "properties": {
+                                            "id": {
+                                                "type": "integer",
+                                                "example": 1
+                                            },
+                                            "titel": {
+                                                "type": "string",
+                                                "example": "Wäsche waschen"
+                                            },
+                                            "erledigt": {
+                                                "type": "boolean",
+                                                "example": false
+                                            },
+                                            "faellig_am": {
+                                                "type": "string",
+                                                "format": "date",
+                                                "example": "2025-05-01"
+                                            },
+                                            "erstellt_am": {
+                                                "type": "string",
+                                                "format": "date-time",
+                                                "example": "2025-04-01T10:00:00Z"
+                                            }
+                                        },
+                                        "type": "object"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "sanctum": []
+                    }
+                ]
+            }
+        }
+    },
+    "tags": [
+        {
+            "name": "ToDos",
+            "description": "ToDos"
+        }
+    ],
+    "components": {
+        "securitySchemes": {
+            "sanctum": {
+                "type": "apiKey",
+                "description": "Enter token in format (Bearer <token>)",
+                "name": "Authorization",
+                "in": "header"
+            }
+        }
+    },
+    "security": [
+        {
+            "sanctum": []
+        }
+    ]
+}
